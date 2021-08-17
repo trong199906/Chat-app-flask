@@ -1,11 +1,10 @@
 from flask import request, jsonify, make_response
 from flask_restful import Resource
-import app
 from database.model import Users
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_jwt_extended import create_access_token
 from database.db import db
-import jwt
-import datetime
+from datetime import timedelta, datetime
 
 
 
@@ -14,6 +13,7 @@ class signup_user(Resource):
         data = request.get_json(force=True)
         hashed_password = generate_password_hash(data['password'], method='sha256')
         new_user = Users(name=data['name'], password=hashed_password)
+
         db.session.add(new_user)
         db.session.commit()
         return jsonify({'message': 'registered successfully'})
@@ -29,10 +29,8 @@ class login_user(Resource):
         user = Users.query.filter_by(name=auth.username).first()
 
         if check_password_hash(user.password, auth.password):
-            app_config = app.app.config
-            token = jwt.encode(
-                {'id': user.id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},app_config['SECRET_KEY'])
-            # return jsonify({'token': token.decode('utf-8')})
-            return jsonify({'token': token})
-
+            expire_data = timedelta(days=7)
+            token = create_access_token(
+                identity=str(user.id),expires_delta=expire_data)
+            return {'token': token}, 200
         return make_response('could not verify', 401, {'WWW.Authentication': 'Basic realm: "login required"'})

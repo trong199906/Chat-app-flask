@@ -11,7 +11,8 @@ class Users(db.Model):
 
 class Group_chat(db.Model):
     chat_id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    add_by = db.Column(db.Integer, db.ForeignKey('users.id'))
     name_chat = db.Column(db.String(50))
     box_chat = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
+
