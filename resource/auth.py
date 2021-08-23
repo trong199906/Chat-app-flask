@@ -1,6 +1,6 @@
 from flask import request, jsonify, make_response
 from flask_restful import Resource
-from database.model import Users
+from database.model import Users, Friends
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token
 from database.db import db
@@ -12,8 +12,10 @@ class signup_user(Resource):
     def post(self):
         data = request.get_json(force=True)
         hashed_password = generate_password_hash(data['password'], method='sha256')
-        new_user = Users(name=data['name'], password=hashed_password)
-
+        new_list_friend = Friends()
+        new_user = Users(name=data['name'], password=hashed_password, friend=new_list_friend)
+        db.create_all()
+        # db.session.add(new_list_friend)
         db.session.add(new_user)
         db.session.commit()
         return jsonify({'message': 'registered successfully'})

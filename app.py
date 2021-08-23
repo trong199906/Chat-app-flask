@@ -10,7 +10,6 @@ app.config['SECRET_KEY']='Hacking99'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///auth.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-
 initialize_db(app)
 jwt = JWTManager(app)
 initialize_routes(api)
