@@ -27,8 +27,8 @@ class Friends(db.Model):
     __name__='friends'
     id = db.Column(db.Integer, primary_key=True)
     # message_id = db.relationship('Messages', lazy="dynamic")
-    # name = db.Column(db.String(50))
-    list_friends = db.Column(db.String(255), default=None)
+    name = db.Column(db.String(50))
+
 
 
 class Messages(db.Model):

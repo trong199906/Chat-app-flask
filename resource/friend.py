@@ -26,14 +26,3 @@ class get_all_list_friends(Resource):
             output.append(data)
         return jsonify({"list of fr": output})
 
-
-class add_friend(Resource):
-    def post(self):
-        data = request.get_json(force=True)
-        id_friend = data['id_friend']
-        user_id = data['user_id']
-        user = Users.query.filter(id=user_id).first()
-        friend_information = Users.query.filter(id=id_friend).first()
-        list_friend = None
-
-        return jsonify({'message': 'created a friend'})
