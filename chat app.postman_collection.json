@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Post",
+			"name": "auth",
 			"item": [
 				{
 					"name": "signup",
@@ -48,6 +48,29 @@
 							}
 						},
 						"url": "localhost:5000/api/auth/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "friend",
+			"item": [
+				{
+					"name": "get-all-friend",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:5000/api/list-friend"
+					},
+					"response": []
+				},
+				{
+					"name": "find friend",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
 					},
 					"response": []
 				},
@@ -96,17 +119,8 @@
 			]
 		},
 		{
-			"name": "Get",
+			"name": "info",
 			"item": [
-				{
-					"name": "get-all-friend",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "localhost:5000/api/list-friend"
-					},
-					"response": []
-				},
 				{
 					"name": "info",
 					"protocolProfileBehavior": {
@@ -133,9 +147,14 @@
 						"url": "localhost:5000/api/account/info"
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "message",
+			"item": [
 				{
-					"name": "find friend",
+					"name": "chat to",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -145,15 +164,6 @@
 				},
 				{
 					"name": "log chat",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": null
-					},
-					"response": []
-				},
-				{
-					"name": "chat to",
 					"request": {
 						"method": "GET",
 						"header": [],
