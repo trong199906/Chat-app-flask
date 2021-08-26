@@ -115,6 +115,15 @@
 						"url": null
 					},
 					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:5000/api/delete-friend/1"
+					},
+					"response": []
 				}
 			]
 		},
@@ -123,28 +132,34 @@
 			"item": [
 				{
 					"name": "info",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYyOTgwMDY5MSwianRpIjoiOTdlODgzZmYtYWM0Yi00MjM2LThmMTktNzRlMjlhZTdhYTBjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE2Mjk4MDA2OTEsImV4cCI6MTYzMDQwNTQ5MX0.EDfnSU8YE6cY4OK_XYUNypYZ8h5Z2RmJFSwxGraExTc"
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjI5OTY4MDkyLCJqdGkiOiI1MmE0ZWQ0YS04YzIxLTQyNDQtOGQzNy05ODgyMTlkYzNmMDUiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjpbWzFdLFsyXSxbM10sWzRdLFs1XV0sIm5iZiI6MTYyOTk2ODA5MiwiZXhwIjoxNjMwNTcyODkyfQ.dihdBLo5vqXiQPZggnsrqyZXQJOnkdzDo2rEI9WZdKo"
 							}
 						},
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\"user_1\": 3, \"user_2\": 2}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "localhost:5000/api/account/info"
+						"url": "http://127.0.0.1:5000/api/account/created-info"
+					},
+					"response": []
+				},
+				{
+					"name": "check-friend",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:5000/api/check-friend"
 					},
 					"response": []
 				}
