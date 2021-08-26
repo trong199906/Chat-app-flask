@@ -19,7 +19,7 @@ class check_friend(Resource):
         conn = sqlite3.connect('auth.db')
         cursor = conn.cursor()
         info = "select user.id ,name, user_1, user_2 from user, info WHERE user.id = info.user_1 or user.id = info.user_2"
-        user_info = cursor.execute(info).fetchone()
+        user_info = cursor.execute(info).fetchall()
         conn.commit()
         conn.close()
         return jsonify({"info": user_info})
