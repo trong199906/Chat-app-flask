@@ -54,80 +54,6 @@
 			]
 		},
 		{
-			"name": "friend",
-			"item": [
-				{
-					"name": "get-all-friend",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "localhost:5000/api/list-friend"
-					},
-					"response": []
-				},
-				{
-					"name": "find friend",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": null
-					},
-					"response": []
-				},
-				{
-					"name": "created-friend",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYyOTc5NDQ4NywianRpIjoiNTYwNWU0NzEtMDNjMC00ZDI3LTk3N2EtNjM2MDk4Nzg3Mjc1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE2Mjk3OTQ0ODcsImV4cCI6MTYzMDM5OTI4N30.gpjRPiKy5BZDllimFsjY-WF8XD5fU8x9urQQvDT2uwg"
-							}
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"name\": \"trong19909\"}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "localhost:5000/api/created-friend"
-					},
-					"response": []
-				},
-				{
-					"name": "add friend",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"id_friend\":1}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": null
-					},
-					"response": []
-				},
-				{
-					"name": "New Request",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": "localhost:5000/api/delete-friend/1"
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "info",
 			"item": [
 				{
@@ -171,9 +97,18 @@
 				{
 					"name": "chat to",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
-						"url": null
+						"body": {
+							"mode": "raw",
+							"raw": "{\"content\": \"tôi khỏe\", \"creat_at\":\"2021-08-15 17:46\", \"user_1\": 1, \"user_2\":3}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:5000/api/send-message"
 					},
 					"response": []
 				},
@@ -182,7 +117,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": "localhost:5000/api/get-chat"
 					},
 					"response": []
 				}
