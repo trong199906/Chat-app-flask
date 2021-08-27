@@ -18,7 +18,7 @@ class check_friend(Resource):
     def get(self):
         conn = sqlite3.connect('auth.db')
         cursor = conn.cursor()
-        info = "SELECT * FROM user, info WHERE user_1 = user.id or user_2 = user.id"
+        info = "SELECT user.id , user.name,  info.user_2 from user INNER JOIN info on user.id = info.user_1 "
         user_info = cursor.execute(info).fetchall()
         conn.commit()
         conn.close()

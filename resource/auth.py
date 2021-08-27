@@ -21,12 +21,21 @@ class signup_user(Resource):
 
 class login_user(Resource):
     def post(self):
+        data = request.get_json()
         conn = sqlite3.connect('auth.db')
         cursor = conn.cursor()
-        q2 = "SELECT id from user"
+        name = data['name']
+        password = data['password']
+        q1 = "SELECT name from user where name=?"
+        q2 = "SELECT password from user where name=?"
         expire_data = timedelta(days=7)
-        cursor.execute(q2)
+        cursor.execute(q1, (name,))
         users = cursor.fetchall()
-        token = create_access_token(identity=users, expires_delta=expire_data, fresh=True)
+        cursor.execute(q2, (name,))
+        pwhash = cursor.fetchone()
+        if check_password_hash(pwhash[0], password=password):
+            token = create_access_token(identity=users, expires_delta=expire_data, fresh=True)
+            return {"token":token},200
         conn.close()
-        return {"token":token},200
+        return make_response('could not verify',  401, {'WWW.Authentication': 'Basic realm: "login required"'})
+
