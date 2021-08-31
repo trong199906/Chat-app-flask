@@ -25,9 +25,12 @@ class chat(Resource):
         conn = sqlite3.connect('auth.db')
         conn.row_factory = dict_factory
         cursor = conn.cursor()
+        q1 = "select user.id where user_1 = 1"
         name = get_jwt_identity()
-        message_1 = "select user.id , user.name , message.content, message.creat_at, message.user_2 from user INNER JOIN message on  user.id = message.user_1 where name=? and user_2=3 or name='anh' and user_2=1"
-        user_info_1 = cursor.execute(message_1, (name[0][0],)).fetchall()
+        user_1 = 1
+        user_2 = 3
+        message_1 = f"select u1.name as name1, u2.name as name2, message.content, message.creat_at from message INNER JOIN user as u1 on  u1.id = message.user_1 INNER JOIN user as u2 on  u2.id = message.user_2 WHERE ((user_1 = {user_1} and user_2 = {user_2}) or (user_1={user_2} and user_2 = {user_1}))"
+        user_info_1 = cursor.execute(message_1).fetchall()
         conn.commit()
         conn.close()
         return {"user_info_1": user_info_1}
