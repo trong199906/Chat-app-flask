@@ -27,7 +27,6 @@ class check_friend(Resource):
         name = get_jwt_identity()
         info = "SELECT user.id , user.name,  info.user_2 from user INNER JOIN info on user.id = info.user_1 where name=?"
         user_info = cursor.execute(info, (name[0][0],)).fetchall()
-        d = {}
         conn.commit()
         conn.close()
         return jsonify({"user_id": user_info})
