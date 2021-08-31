@@ -10,4 +10,4 @@ def initialize_routes(api):
     api.add_resource(check_friend, '/api/check-friend')
 
     api.add_resource(create_message, '/api/send-message')
-    api.add_resource(chat, '/api/get-chat')
+    api.add_resource(chat, '/api/get-chat/<int:id>')
